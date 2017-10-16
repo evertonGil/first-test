@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+{% block beforeMain %}
+  <div class="block hero">
+    <div class="inner">
+      <div class="hero-text">
+        <h4>Welcome to my first Apostrophe site!</h4>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block main %}
+  <div class="main-content">
+    {{ apos.area(data.page, 'body', {
+	  widgets: {
+	    'apostrophe-rich-text': {
+	      toolbar: [ 'Styles', 'Bold', 'Italic', 'Link', 'Unlink', 'Anchor', 'Table', 'BulletedList', 'Blockquote', 'Strike', ' Subscript', 'Superscript', 'Source' ]
+	    },
+	    'apostrophe-images': {
+	      size: 'full'
+	    },
+	    'apostrophe-files': {
+		    limit: 4
+		},
+		'apostrophe-html': {}
+	  }
+	}) }}
+  </div>
+{% endblock %}

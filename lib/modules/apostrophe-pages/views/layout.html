@@ -1,0 +1,15 @@
+{% extends data.outerLayout %}
+
+{% block beforeMain %}
+<h2><a href="{{ data.home._url }}">{{ data.home.title }}</a></h2>
+{% endblock %}
+
+{% block afterMain %}
+  <footer>
+    <div class="main-content">
+    {{ apos.singleton(data.global, 'footer', 'apostrophe-rich-text', {
+      toolbar: [ 'Bold', 'Italic', 'Styles', 'Link', 'Unlink' ]
+    }) }}
+  </div>
+  </footer>
+{% endblock %}
