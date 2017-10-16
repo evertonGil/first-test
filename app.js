@@ -16,19 +16,28 @@ var apos = require('apostrophe')({
 			}
 		]
 	},
-  
-    'apostrophe-pages': {
-      types: [
-        {
-          name: 'default',
-          label: 'Default'
-        },
-        {
-          name: 'home',
-          label: 'Home'
-        },
-      ]
+  'apostrophe-pages': {
+    types: [
+      {
+        name: 'default',
+        label: 'Default'
+      },
+      {
+        name: 'home',
+        label: 'Home'
+      },
+    ],
+    filters: {
+      // Grab our ancestor pages, with two levels of subpages
+      ancestors: {
+        children: {
+          depth: 2
+        }
+      },
+      children: true
     }
+  },
+  'link-widgets': {}
 
   }
 });

@@ -2,14 +2,43 @@
 
 {% block beforeMain %}
 <h2><a href="{{ data.home._url }}">{{ data.home.title }}</a></h2>
+<nav>
+	<ul class="tabs accordion">
+	  {% for tab in data.home._children %}
+	    <li class="{% if data.page and (apos.pages.isAncestorOf(tab, data.page) or tab._id == data.page._id) %}
+	        current
+		{% endif %}"><a href="{{ tab._url }}">{{ tab.title }}</a>
+			{% if tab._children.length %}
+		        <ul>
+		          {% for child in tab._children %}
+		            <li><a href="{{ child._url }}">{{ child.title }}</a></li>
+		          {% endfor %}
+		        </ul>
+			{% endif %}
+		</li>
+	  {% endfor %}
+	</ul>
+</nav>
 {% endblock %}
 
 {% block afterMain %}
-  <footer>
+<footer>
     <div class="main-content">
-    {{ apos.singleton(data.global, 'footer', 'apostrophe-rich-text', {
-      toolbar: [ 'Bold', 'Italic', 'Styles', 'Link', 'Unlink' ]
-    }) }}
-  </div>
-  </footer>
+	    {{ apos.singleton(data.global, 'footer', 'apostrophe-rich-text', {
+	      toolbar: [ 'Bold', 'Italic', 'Styles', 'Link', 'Unlink' ]
+	    }) }}
+
+
+	    <div class="link-maps">
+			{{
+			  apos.area(data.page, 'navigation', {
+			    widgets: {
+			      link: {}
+			    }
+			  })
+			}}
+		</div>
+	</div>
+
+</footer>
 {% endblock %}
